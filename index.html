@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yassine Ennaim · Agentic AI Engineer</title>
+<meta name="description" content="Yassine Ennaim builds and operates AI agents in production: Mastra, TypeScript, OpenAI and Gemini, human approval flows, observability and cost control. 21 mobile apps shipped.">
+<meta property="og:title" content="Yassine Ennaim · Agentic AI Engineer">
+<meta property="og:description" content="Production AI agents in TypeScript (Mastra). Agents, workflows, Slack approval, tracing and cost control that fails closed. 21 apps shipped.">
+<meta property="og:url" content="https://ennaim.dev">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#020202">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></symbol>
+  <symbol id="i-agent" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v3M9 20h10M6 10a8 8 0 0 1 16 0v4a6 6 0 0 1-6 6h-4a6 6 0 0 1-6-6z"/><circle cx="11" cy="13" r="1.2" fill="currentColor" stroke="none"/><circle cx="17" cy="13" r="1.2" fill="currentColor" stroke="none"/><path d="M11 25h6"/></symbol>
+  <symbol id="i-workflow" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="8" height="6" rx="2"/><rect x="17" y="4" width="8" height="6" rx="2"/><rect x="10" y="18" width="8" height="6" rx="2"/><path d="M7 10v3a2 2 0 0 0 2 2h3M21 10v3a2 2 0 0 1-2 2h-3M14 15v3"/></symbol>
+  <symbol id="i-tool" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 4.5a5 5 0 0 0-6.6 6.2L4.5 20.1a2 2 0 1 0 2.8 2.9l9.4-9.4a5 5 0 0 0 6.2-6.6l-3 3-2.9-.8-.8-2.9z"/></symbol>
+  <symbol id="i-observe" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h20M6 18l5-6 4 3 7-9"/><circle cx="22" cy="6" r="1.6" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="3" width="12" height="22" rx="3"/><path d="M12 6h4M13 21.5h2"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></symbol>
+</svg>
+
+<header class="nav" id="nav">
+  <div class="nav__bar">
+    <a class="nav__logo" href="#top" aria-label="ennaim, home">
+      <img class="nav__mark" src="assets/logo-mark.svg" alt="" width="28" height="28">
+      <span class="nav__word">ennaim</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a class="nav__link nav__link--dot" href="#work">Work</a>
+      <a class="nav__link nav__link--dot" href="#projects">Projects</a>
+      <a class="nav__link nav__link--dot" href="#experience">Experience</a>
+      <a class="nav__link" href="#faq">FAQ</a>
+      <a class="nav__link" href="assets/Yassine-Ennaim-CV.pdf" target="_blank" rel="noopener">CV</a>
+    </nav>
+    <div class="nav__right">
+      <a class="nav__gh" href="https://www.linkedin.com/in/ennaim" target="_blank" rel="noopener" aria-label="LinkedIn profile">
+        <svg class="nav__gh-icon"><use href="#i-linkedin"/></svg><span>in/ennaim</span>
+      </a>
+      <a class="btn btn--nav btn--ghost" href="https://www.upwork.com/freelancers/ennaim" target="_blank" rel="noopener">Upwork</a>
+      <a class="btn btn--nav btn--ghost" href="https://fouz.app" target="_blank" rel="noopener">fouz.app</a>
+      <a class="btn btn--nav btn--dark" href="mailto:yassine@ennaim.dev">Get in touch</a>
+    </div>
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+      <svg class="nav__toggle-icon nav__toggle-icon--open"><use href="#i-menu"/></svg>
+      <svg class="nav__toggle-icon nav__toggle-icon--close"><use href="#i-close"/></svg>
+    </button>
+  </div>
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="#work">Work</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#faq">FAQ</a>
+    <a href="assets/Yassine-Ennaim-CV.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+    <a href="https://www.linkedin.com/in/ennaim" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.upwork.com/freelancers/ennaim" target="_blank" rel="noopener">Upwork</a>
+    <a class="btn btn--dark" href="mailto:yassine@ennaim.dev">Get in touch</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="section section--hero">
+    <a class="lip" href="mailto:yassine@ennaim.dev?subject=Agentic%20AI%20role">
+      <span class="lip__meta">Open to work</span><span class="lip__sep" aria-hidden="true">•</span>
+      <span class="lip__title">Agentic AI roles, Riyadh or remote</span>
+      <svg class="lip__arrow"><use href="#i-right"/></svg>
+    </a>
+
+    <div class="hero">
+      <div class="hero__copy">
+        <div class="hero__fade-1">
+          <h1 class="hero__title">I build AI agents</h1>
+          <p class="hero__sub">
+            <span class="cycle is-on" data-cycle>Build</span>, <span class="cycle" data-cycle>operate</span>, and <span class="cycle" data-cycle>ship</span>
+            agents that run for days in production. Yassine Ennaim, Agentic AI Engineer on Mastra and TypeScript, with 21 mobile apps shipped.
+          </p>
+        </div>
+        <div class="hero__fade-2 hero__actions">
+          <a class="btn btn--primary" href="mailto:yassine@ennaim.dev">Get in touch</a>
+          <a class="btn btn--dark" href="#projects">See the work <svg class="btn__icon"><use href="#i-arrow"/></svg></a>
+        </div>
+      </div>
+
+      <!-- Right: live-looking trace of the real marketing-team workflow -->
+      <div class="hero__panel" aria-hidden="true">
+        <div class="trace" id="trace">
+          <div class="trace__head">
+            <span class="trace__dot"></span>
+            <span class="trace__name">workflow run: 'daily-content-pack'</span>
+            <span class="trace__meta">9 steps</span>
+            <span class="trace__time">41.2s</span>
+          </div>
+          <div class="trace__rows">
+            <div class="trace__row" style="--i:1"><span class="trace__k">step: research</span><span class="trace__v">tavily.search</span><span class="trace__t">6.1s</span></div>
+            <div class="trace__row" style="--i:2"><span class="trace__k">step: write</span><span class="trace__v">gpt-5.5-mini × 9 platforms</span><span class="trace__t">18.4s</span></div>
+            <div class="trace__row" style="--i:3"><span class="trace__k">step: lint</span><span class="trace__v">brand-voice processor</span><span class="trace__t">0.3s</span></div>
+            <div class="trace__row" style="--i:4"><span class="trace__k">step: budget-gate</span><span class="trace__v">$0.011 of $0.05 cap</span><span class="trace__t">0.0s</span></div>
+            <div class="trace__row" style="--i:5"><span class="trace__k">step: images</span><span class="trace__v">gpt-image-2 × 3, locked sheet</span><span class="trace__t">12.6s</span></div>
+            <div class="trace__row" style="--i:6"><span class="trace__k">tool: slack.approvalCard</span><span class="trace__v">9 cards posted</span><span class="trace__t">0.9s</span></div>
+            <div class="trace__row trace__row--warn" style="--i:7"><span class="trace__k">suspended</span><span class="trace__v">awaiting human approval</span><span class="trace__t">—</span></div>
+            <div class="trace__row trace__row--ok" style="--i:8"><span class="trace__k">resumed</span><span class="trace__v">approved by yassine</span><span class="trace__t">2h 14m</span></div>
+            <div class="trace__row trace__row--ok" style="--i:9"><span class="trace__k">publish</span><span class="trace__v">linkedin, x, telegram</span><span class="trace__t">2.9s</span></div>
+          </div>
+          <div class="trace__foot"><span>traced · metered in DuckDB</span><span class="trace__cost">cost $0.011</span></div>
+        </div>
+
+        <div class="slackcard">
+          <div class="slackcard__head"><span class="slackcard__hash">#</span>approvals <span class="slackcard__app">Fouz team</span></div>
+          <div class="slackcard__post">LinkedIn · Tue 06:00<br><strong>Nothing publishes until a human presses Approve.</strong></div>
+          <div class="slackcard__btns"><span class="slackcard__btn slackcard__btn--ok">Approve</span><span class="slackcard__btn">Skip</span><span class="slackcard__btn">Edit</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="marquee" aria-label="Stack">
+      <div class="marquee__track">
+        <div class="marquee__item"><span class="marquee__logo">TypeScript</span><span class="marquee__cap">Language</span></div>
+        <div class="marquee__item"><span class="marquee__logo">Mastra</span><span class="marquee__cap">Agents</span></div>
+        <div class="marquee__item"><span class="marquee__logo">OpenAI</span><span class="marquee__cap">Models</span></div>
+        <div class="marquee__item"><span class="marquee__logo">Gemini</span><span class="marquee__cap">Models</span></div>
+        <div class="marquee__item"><span class="marquee__logo">Supabase</span><span class="marquee__cap">Backend</span></div>
+        <div class="marquee__item"><span class="marquee__logo">Expo</span><span class="marquee__cap">Mobile</span></div>
+        <div class="marquee__item"><span class="marquee__logo">Flutter</span><span class="marquee__cap">Mobile</span></div>
+        <div class="marquee__item"><span class="marquee__logo">NestJS</span><span class="marquee__cap">Backend</span></div>
+        <div class="marquee__item"><span class="marquee__logo">Next.js</span><span class="marquee__cap">Web</span></div>
+        <div class="marquee__item"><span class="marquee__logo">Slack</span><span class="marquee__cap">Approvals</span></div>
+        <div class="marquee__item"><span class="marquee__logo">DuckDB</span><span class="marquee__cap">Metrics</span></div>
+        <div class="marquee__item"><span class="marquee__logo">LibSQL</span><span class="marquee__cap">Storage</span></div>
+        <div class="marquee__item"><span class="marquee__logo">PostHog</span><span class="marquee__cap">Analytics</span></div>
+        <div class="marquee__item"><span class="marquee__logo">Sentry</span><span class="marquee__cap">Errors</span></div>
+        <div class="marquee__item"><span class="marquee__logo">Stripe</span><span class="marquee__cap">Payments</span></div>
+        <div class="marquee__item"><span class="marquee__logo">Firebase</span><span class="marquee__cap">Backend</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORK: feature tabs ============ -->
+  <section class="section" id="work">
+    <div class="wrap">
+      <h2 class="h2" data-reveal>Agents. Workflows. Approval flows. <span class="h2__muted">Everything an agent needs to run for days in production, and someone accountable for it.</span></h2>
+
+      <div class="tabs" id="tabs" data-reveal>
+        <div class="tabs__bar" role="tablist" aria-label="What I build">
+          <button class="tabs__tab" role="tab" aria-selected="true" data-tab="agents"><svg class="tabs__icon"><use href="#i-agent"/></svg><span>Agents</span></button>
+          <button class="tabs__tab" role="tab" aria-selected="false" data-tab="workflows"><svg class="tabs__icon"><use href="#i-workflow"/></svg><span>Workflows</span></button>
+          <button class="tabs__tab" role="tab" aria-selected="false" data-tab="tools"><svg class="tabs__icon"><use href="#i-tool"/></svg><span>Tools</span></button>
+          <button class="tabs__tab" role="tab" aria-selected="false" data-tab="observe"><svg class="tabs__icon"><use href="#i-observe"/></svg><span>Observability</span></button>
+          <button class="tabs__tab" role="tab" aria-selected="false" data-tab="mobile"><svg class="tabs__icon"><use href="#i-phone"/></svg><span>Mobile</span></button>
+        </div>
+
+        <div class="tabs__stage">
+          <!-- AGENTS -->
+          <div class="tabs__panel is-active" data-panel="agents" role="tabpanel">
+            <div class="tabs__code"><div class="code__bar"><span class="code__file">AGENT.TS</span></div>
+<pre class="code"><code><span class="l"><span class="k">import</span> { Agent } <span class="k">from</span> <span class="s">"@mastra/core/agent"</span>;</span>
+<span class="l"></span>
+<span class="l"><span class="k">export const</span> writer = <span class="k">new</span> <span class="c">Agent</span>({</span>
+<span class="l">  id: <span class="s">"content-writer"</span>,</span>
+<span class="l">  name: <span class="s">"Content Writer"</span>,</span>
+<span class="l">  instructions: brandVoice,   <span class="m">// grounded in a company file</span></span>
+<span class="l">  model: <span class="s">"openai/gpt-5.5-mini"</span>,</span>
+<span class="l">  tools: { research, deliverables },</span>
+<span class="l">  memory,                     <span class="m">// scoped by thread + resource</span></span>
+<span class="l">});</span></code></pre>
+            </div>
+            <div class="tabs__media">
+              <div class="mock mock--chat">
+                <div class="mock__top"><span class="mock__pill is-on">Chat</span><span class="mock__pill">Editor</span><span class="mock__pill">Evaluate</span><span class="mock__crumb">Agents / content-writer</span></div>
+                <div class="mock__msg mock__msg--user">Write Tuesday's LinkedIn post from today's research pack.</div>
+                <div class="mock__msg">Drafted, 142 words, brand voice lint passed. Two numbers, one link in the first comment. Sending to #approvals.</div>
+                <div class="mock__tools"><span>tool · research.read</span><span>tool · deliverables.put</span><span>tool · slack.approvalCard</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- WORKFLOWS -->
+          <div class="tabs__panel" data-panel="workflows" role="tabpanel" hidden>
+            <div class="tabs__code"><div class="code__bar"><span class="code__file">WORKFLOW.TS</span></div>
+<pre class="code"><code><span class="l"><span class="k">import</span> { createWorkflow } <span class="k">from</span> <span class="s">"@mastra/core/workflows"</span>;</span>
+<span class="l"></span>
+<span class="l"><span class="k">export const</span> dailyPack = <span class="c">createWorkflow</span>({</span>
+<span class="l">  id: <span class="s">"daily-content-pack"</span>,</span>
+<span class="l">  inputSchema: z.object({ date: z.string() }),</span>
+<span class="l">})</span>
+<span class="l">  .then(research)</span>
+<span class="l">  .foreach(writeForPlatform, { concurrency: <span class="n">3</span> })</span>
+<span class="l">  .then(lint)</span>
+<span class="l">  .then(budgetGate)         <span class="m">// fails closed</span></span>
+<span class="l">  .then(requestApproval)    <span class="m">// suspends until Slack</span></span>
+<span class="l">  .commit();</span></code></pre>
+            </div>
+            <div class="tabs__media">
+              <div class="mock mock--flow">
+                <div class="flow">
+                  <div class="flow__node">research</div><div class="flow__edge"></div>
+                  <div class="flow__node flow__node--fan">write ×9</div><div class="flow__edge"></div>
+                  <div class="flow__node">lint</div><div class="flow__edge"></div>
+                  <div class="flow__node">budget gate</div><div class="flow__edge"></div>
+                  <div class="flow__node flow__node--pause">approval</div><div class="flow__edge"></div>
+                  <div class="flow__node flow__node--ok">publish</div>
+                </div>
+                <div class="mock__legend"><span><i class="dot dot--amber"></i>suspend / resume</span><span><i class="dot dot--green"></i>retries + onError on every step</span><span><i class="dot"></i>schedule 06:00 Asia/Dubai</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TOOLS -->
+          <div class="tabs__panel" data-panel="tools" role="tabpanel" hidden>
+            <div class="tabs__code"><div class="code__bar"><span class="code__file">TOOLS/SLACK.TS</span></div>
+<pre class="code"><code><span class="l"><span class="k">export const</span> approvalCard = <span class="c">createTool</span>({</span>
+<span class="l">  id: <span class="s">"slack.approvalCard"</span>,</span>
+<span class="l">  inputSchema: z.object({ post: postSchema }),</span>
+<span class="l">  execute: <span class="k">async</span> ({ context }) =&gt; {</span>
+<span class="l">    <span class="k">await</span> slack.chat.postMessage({</span>
+<span class="l">      channel: APPROVALS,</span>
+<span class="l">      blocks: card(context.post), <span class="m">// Approve · Skip · Edit</span></span>
+<span class="l">    });</span>
+<span class="l">    <span class="k">return</span> { status: <span class="s">"awaiting-human"</span> };</span>
+<span class="l">  },</span>
+<span class="l">});</span></code></pre>
+            </div>
+            <div class="tabs__media">
+              <div class="mock mock--slack">
+                <div class="slackcard slackcard--static">
+                  <div class="slackcard__head"><span class="slackcard__hash">#</span>approvals <span class="slackcard__app">Fouz team · 06:02</span></div>
+                  <div class="slackcard__post">X · Tue<br><strong>Logged 3 sports this week? That streak is worth 60 XP.</strong><br><span class="slackcard__sub">lint: pass · cost $0.0012 · image attached</span></div>
+                  <div class="slackcard__btns"><span class="slackcard__btn slackcard__btn--ok">Approve</span><span class="slackcard__btn">Skip</span><span class="slackcard__btn">Edit</span></div>
+                </div>
+                <div class="mock__legend"><span><i class="dot dot--green"></i>Slack Block Kit</span><span><i class="dot"></i>Telegram, X, LinkedIn rails</span><span><i class="dot"></i>Tavily research</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- OBSERVABILITY -->
+          <div class="tabs__panel" data-panel="observe" role="tabpanel" hidden>
+            <div class="tabs__code"><div class="code__bar"><span class="code__file">MASTRA.TS</span></div>
+<pre class="code"><code><span class="l"><span class="k">export const</span> mastra = <span class="k">new</span> <span class="c">Mastra</span>({</span>
+<span class="l">  agents: { writer, analyst, condenser },</span>
+<span class="l">  workflows: { dailyPack, revise, prune },</span>
+<span class="l">  storage: <span class="k">new</span> <span class="c">LibSQLStore</span>({ url: <span class="s">"file:./team.db"</span> }),</span>
+<span class="l">  observability: <span class="k">new</span> <span class="c">Observability</span>({</span>
+<span class="l">    exporters: [duckdbMetrics, traces],</span>
+<span class="l">  }),</span>
+<span class="l">  <span class="m">// monthly ceiling per resource, fails closed</span></span>
+<span class="l">  processors: [tokenCostControl({ limitUsd: <span class="n">20</span> })],</span>
+<span class="l">});</span></code></pre>
+            </div>
+            <div class="tabs__media">
+              <div class="mock mock--table">
+                <div class="mock__top"><span class="mock__crumb">Runs / daily-content-pack</span><span class="mock__pill is-on">Traces</span><span class="mock__pill">Metrics</span></div>
+                <table class="tbl">
+                  <thead><tr><th>#</th><th>run</th><th>tokens</th><th>cost</th><th>status</th></tr></thead>
+                  <tbody>
+                    <tr><td>1</td><td>2026-10-31</td><td>38,410</td><td>$0.011</td><td class="ok">published</td></tr>
+                    <tr><td>2</td><td>2026-10-30</td><td>37,902</td><td>$0.010</td><td class="ok">published</td></tr>
+                    <tr class="warn"><td>3</td><td>2026-10-29</td><td>61,220</td><td>$0.049</td><td>budget gate</td></tr>
+                    <tr><td>4</td><td>2026-10-28</td><td>36,114</td><td>$0.010</td><td class="ok">published</td></tr>
+                    <tr><td>5</td><td>2026-10-27</td><td>39,007</td><td>$0.011</td><td class="ok">published</td></tr>
+                  </tbody>
+                </table>
+                <div class="mock__legend"><span><i class="dot dot--green"></i>~170 vitest tests</span><span><i class="dot"></i>structured logs, secrets redacted</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MOBILE -->
+          <div class="tabs__panel" data-panel="mobile" role="tabpanel" hidden>
+            <div class="tabs__code"><div class="code__bar"><span class="code__file">APP/(TABS)/LOG.TSX</span></div>
+<pre class="code"><code><span class="l"><span class="k">export default function</span> <span class="c">LogSport</span>() {</span>
+<span class="l">  <span class="k">const</span> { mutate } = useLogActivity();   <span class="m">// Supabase RLS</span></span>
+<span class="l">  <span class="k">return</span> (</span>
+<span class="l">    &lt;<span class="c">Screen</span>&gt;</span>
+<span class="l">      &lt;<span class="c">SportPicker</span> sports={SPORTS} /&gt;   <span class="m">{/* 55 sports */}</span></span>
+<span class="l">      &lt;<span class="c">Button</span> onPress={() =&gt; mutate({ xp: <span class="n">20</span> })}&gt;</span>
+<span class="l">        Log it in 20 seconds</span>
+<span class="l">      &lt;/<span class="c">Button</span>&gt;</span>
+<span class="l">    &lt;/<span class="c">Screen</span>&gt;</span>
+<span class="l">  );</span>
+<span class="l">}</span></code></pre>
+            </div>
+            <div class="tabs__media">
+              <div class="mock mock--phone">
+                <div class="phone">
+                  <div class="phone__bar"><span>9:41</span><span>●●●</span></div>
+                  <div class="phone__title">Fouz</div>
+                  <div class="phone__stat"><b>1,240</b> XP<span>·</span><b>12</b> day streak</div>
+                  <div class="phone__grid"><span>Run</span><span>Swim</span><span>Padel</span><span>Football</span><span>Yoga</span><span>Boxing</span></div>
+                  <div class="phone__cta">Log it in 20 seconds</div>
+                </div>
+                <div class="mock__legend"><span><i class="dot dot--green"></i>Live on the App Store</span><span><i class="dot"></i>Expo · RevenueCat · PostHog · Sentry</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabs__copy" aria-live="polite">
+          <div class="tabs__copy-item is-active" data-copy="agents"><h3>Agents</h3><p>Typed agents with instructions grounded in a company context file, tool calling, and memory scoped by thread and resource.</p></div>
+          <div class="tabs__copy-item" data-copy="workflows"><h3>Workflows</h3><p>Deterministic steps with Zod schemas, retries and onError, budget gates, foreach over platforms, and human in the loop suspend and resume.</p></div>
+          <div class="tabs__copy-item" data-copy="tools"><h3>Tools</h3><p>Tavily research, a deliverables store, Slack Block Kit approvals, and publishing rails for Telegram, X and LinkedIn behind requireApproval.</p></div>
+          <div class="tabs__copy-item" data-copy="observe"><h3>Observability</h3><p>Every run traced, every model call metered in DuckDB, structured logs with secret redaction, and a spend cap that fails closed instead of open.</p></div>
+          <div class="tabs__copy-item" data-copy="mobile"><h3>Mobile</h3><p>21 client apps on the App Store and Play Store since 2019 with Expo, Flutter and FlutterFlow, and AI features inside the app.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROOF ============ -->
+  <section class="section" id="proof">
+    <div class="wrap">
+      <h2 class="h2" data-reveal>Operated, not just shipped. <span class="h2__muted">Every run is traced, every model call is metered, and nothing publishes until a human presses Approve.</span></h2>
+      <div class="actions actions--center" data-reveal>
+        <a class="btn btn--primary" href="mailto:yassine@ennaim.dev">Get in touch</a>
+        <a class="btn btn--dark" href="https://fouz.app" target="_blank" rel="noopener">fouz.app <svg class="btn__icon"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="stats" data-reveal>
+        <div class="stat"><div class="stat__n">21</div><div class="stat__l">apps shipped to the App Store and Play Store</div><div class="stat__tag">since 2019</div></div>
+        <div class="stat"><div class="stat__n">100<span class="stat__u">%</span></div><div class="stat__l">Job Success Score, Top Rated Plus on Upwork</div><div class="stat__tag">clients in US, UK, EU, UAE, SEA</div></div>
+        <div class="stat"><div class="stat__n">~170</div><div class="stat__l">automated tests on the agent platform</div><div class="stat__tag">tools, workflows, guards</div></div>
+        <div class="stat"><div class="stat__n"><span class="stat__u">$</span>0.01</div><div class="stat__l">per daily content pack across nine platforms</div><div class="stat__tag">metered in DuckDB</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="section" id="projects">
+    <div class="wrap">
+      <h2 class="h2" data-reveal>Selected work. <span class="h2__muted">Agents that reach real users, and the apps that got me here.</span></h2>
+      <div class="cards" data-reveal>
+        <a class="card card--a" href="https://fouz.app" target="_blank" rel="noopener">
+          <div class="card__kicker">Mastra · OpenAI · Gemini · Slack · DuckDB</div>
+          <h3 class="card__title">Autonomous marketing team for Fouz</h3>
+          <p class="card__text">Agents research, write and lint a daily pack for nine platforms at 06:00, generate on brand images from a locked reference sheet, and post approval cards into Slack. First live posts 8 September 2026.</p>
+          <span class="card__cta">Read story <svg><use href="#i-right"/></svg></span>
+          <span class="card__glow"></span>
+        </a>
+        <a class="card card--b" href="https://fouz.app" target="_blank" rel="noopener">
+          <div class="card__kicker">Expo · Supabase · RevenueCat · PostHog · Sentry</div>
+          <h3 class="card__title">Fouz, gamified sports app on iOS</h3>
+          <p class="card__text">Log any of 55 sports in 20 seconds, earn XP, keep streaks, climb city leaderboards. Anti cheat rules in Postgres, push notifications, App Store review passed. Live since 29 August 2026.</p>
+          <span class="card__cta">Visit fouz.app <svg><use href="#i-right"/></svg></span>
+          <span class="card__glow"></span>
+        </a>
+        <a class="card card--c" href="https://www.upwork.com/freelancers/ennaim" target="_blank" rel="noopener">
+          <div class="card__kicker">FlutterFlow · Flutter · Firebase · Stripe Connect</div>
+          <h3 class="card__title">Rinkly, skating rink booking</h3>
+          <p class="card__text">Stripe Connect payouts, real time availability, digital waivers and QR ticketing for rinks and their skaters.</p>
+          <span class="card__cta">See on Upwork <svg><use href="#i-right"/></svg></span>
+          <span class="card__glow"></span>
+        </a>
+        <a class="card card--d" href="https://www.upwork.com/freelancers/ennaim" target="_blank" rel="noopener">
+          <div class="card__kicker">FlutterFlow · Firebase · GCP</div>
+          <h3 class="card__title">Flipaki, peer to peer rental marketplace</h3>
+          <p class="card__text">Inventory, encrypted chat, deposits and shop accounts for a two sided rental marketplace.</p>
+          <span class="card__cta">See on Upwork <svg><use href="#i-right"/></svg></span>
+          <span class="card__glow"></span>
+        </a>
+        <a class="card card--e" href="https://www.upwork.com/freelancers/ennaim" target="_blank" rel="noopener">
+          <div class="card__kicker">Gemini · TypeScript Cloud Functions · Flutter</div>
+          <h3 class="card__title">7akai, AI generated storybooks</h3>
+          <p class="card__text">Gemini writes the story, generates the images and narrates it, inside a children's reading app. Plus Meal, OpenAI pantry scanning and inventory.</p>
+          <span class="card__cta">See on Upwork <svg><use href="#i-right"/></svg></span>
+          <span class="card__glow"></span>
+        </a>
+        <a class="card card--f" href="https://www.upwork.com/freelancers/ennaim" target="_blank" rel="noopener">
+          <div class="card__kicker">Next.js · Supabase · Xendit · NestJS</div>
+          <h3 class="card__title">CourtFinder, NurseRates, The Unique Piece</h3>
+          <p class="card__text">Dual app court booking with Xendit payments, a privacy first hospital rating app, and a vintage furniture marketplace with an escrow flow.</p>
+          <span class="card__cta">See on Upwork <svg><use href="#i-right"/></svg></span>
+          <span class="card__glow"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE + RESOURCES ============ -->
+  <section class="section" id="experience">
+    <div class="wrap">
+      <div class="split">
+        <div class="split__main">
+          <h2 class="h2 h2--left h2--sm" data-reveal>Experience</h2>
+          <ol class="timeline" data-reveal>
+            <li class="tl">
+              <div class="tl__head"><h3 class="tl__title">Founder and Lead Engineer, Fouz</h3><span class="tl__when">Jul 2021 → now</span></div>
+              <p class="tl__text">Shipped Fouz to the App Store and built the autonomous Mastra marketing team that runs it: agents, workflows, tools, Slack approval, scheduled content, image generation, tracing and spend caps on OpenAI and Gemini. Earlier, the NestJS microservices backend on GCP, Redis and PostgreSQL.</p>
+            </li>
+            <li class="tl">
+              <div class="tl__head"><h3 class="tl__title">AI and Mobile Engineer, Freelance on Upwork</h3><span class="tl__when">Aug 2019 → now</span></div>
+              <p class="tl__text">21 client applications shipped, 100% Job Success, Top Rated Plus. Booking with Stripe Connect and QR ticketing, marketplaces with encrypted chat, healthcare and restaurant apps, and AI inside the app with OpenAI and Gemini.</p>
+            </li>
+            <li class="tl">
+              <div class="tl__head"><h3 class="tl__title">Senior Full-Stack Developer, Casapplanca</h3><span class="tl__when">Jun 2020 → Jul 2021</span></div>
+              <p class="tl__text">Kapptain.com, a serverless marketplace for photography services, and the M2M mentorship platform on NestJS microservices, PostgreSQL, Redis and React.</p>
+            </li>
+            <li class="tl">
+              <div class="tl__head"><h3 class="tl__title">Full-Stack Web Developer, Abweb Digital Agency</h3><span class="tl__when">Mar 2015 → Aug 2019</span></div>
+              <p class="tl__text">Built and maintained the Forbes Middle East website and its custom CMS, plus long running B2B platforms and a real estate marketplace serving thousands of concurrent users.</p>
+            </li>
+          </ol>
+        </div>
+        <aside class="split__side" data-reveal>
+          <h2 class="h2 h2--left h2--sm">Resources</h2>
+          <a class="res" href="assets/Yassine-Ennaim-CV.pdf" target="_blank" rel="noopener">
+            <svg class="res__icon"><use href="#i-doc"/></svg>
+            <span class="res__body"><span class="res__title">CV, Agentic AI Engineer</span><span class="res__sub">PDF · one page</span></span>
+            <svg class="res__arrow"><use href="#i-arrow"/></svg>
+          </a>
+          <a class="res" href="https://www.linkedin.com/in/ennaim" target="_blank" rel="noopener">
+            <svg class="res__icon"><use href="#i-linkedin"/></svg>
+            <span class="res__body"><span class="res__title">LinkedIn</span><span class="res__sub">in/ennaim · posts on building the agent team in public</span></span>
+            <svg class="res__arrow"><use href="#i-arrow"/></svg>
+          </a>
+          <a class="res" href="https://www.upwork.com/freelancers/ennaim" target="_blank" rel="noopener">
+            <svg class="res__icon"><use href="#i-spark"/></svg>
+            <span class="res__body"><span class="res__title">Upwork</span><span class="res__sub">Top Rated Plus · 100% Job Success</span></span>
+            <svg class="res__arrow"><use href="#i-arrow"/></svg>
+          </a>
+          <div class="res res--static">
+            <svg class="res__icon"><use href="#i-agent"/></svg>
+            <span class="res__body"><span class="res__title">Build Your First Agent in TypeScript</span><span class="res__sub">Mastra course, 2026 · Google AI (Gemini), 2026</span></span>
+          </div>
+          <div class="res__note">Native Arabic · fluent French · professional English. Moroccan national, working remotely from Southeast Asia (UTC+7), able to relocate to Saudi Arabia on 8 weeks notice.</div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section" id="faq">
+    <div class="wrap wrap--narrow">
+      <h2 class="h2 h2--sm" data-reveal>Frequently asked questions</h2>
+      <div class="faq" data-reveal>
+        <div class="faq__item is-open">
+          <button class="faq__q" aria-expanded="true"><span>What do you build?</span><svg class="faq__chev"><use href="#i-chev"/></svg></button>
+          <div class="faq__a"><div class="faq__inner">AI agents and workflows in TypeScript: tool calling, multi step workflows, human in the loop approval, scheduled jobs, RAG over your data, and Slack or Telegram surfaces. I also add AI to existing apps and ship mobile apps with AI inside, on Expo or Flutter with Supabase or Firebase behind them.</div></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q" aria-expanded="false"><span>Why Mastra?</span><svg class="faq__chev"><use href="#i-chev"/></svg></button>
+          <div class="faq__a"><div class="faq__inner">Mastra is the TypeScript agent framework I go deep on: typed agents, deterministic workflows with retries and suspend and resume, processors that guard output, tracing on every run, and token cost control. It lets one engineer build and operate a whole agent team, which is exactly what I do for Fouz.</div></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q" aria-expanded="false"><span>What does "fails closed" mean in your cost controls?</span><svg class="faq__chev"><use href="#i-chev"/></svg></button>
+          <div class="faq__a"><div class="faq__inner">Every model call is metered in DuckDB. A budget gate runs before each call, and when the monthly ceiling is reached the run stops instead of continuing and surprising you on the invoice. A full daily content pack for nine platforms costs about one cent.</div></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q" aria-expanded="false"><span>Do you still ship mobile apps?</span><svg class="faq__chev"><use href="#i-chev"/></svg></button>
+          <div class="faq__a"><div class="faq__inner">Yes. 21 client apps on the App Store and Play Store since 2019, and my own app Fouz is live on iOS. The best fit today is a mobile app with AI inside, where I own the agent layer and the app end to end.</div></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q" aria-expanded="false"><span>Where are you based, and can you relocate?</span><svg class="faq__chev"><use href="#i-chev"/></svg></button>
+          <div class="faq__a"><div class="faq__inner">Moroccan national, currently working remotely from Southeast Asia on UTC+7. Open to remote roles anywhere and to on site roles in Riyadh or Jeddah, with relocation to Saudi Arabia on 8 weeks notice.</div></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q" aria-expanded="false"><span>How do you work with a team?</span><svg class="faq__chev"><use href="#i-chev"/></svg></button>
+          <div class="faq__a"><div class="faq__inner">Clean code, clear written communication, and no mess left behind. Tell me what the agent should do and who has to approve it, and I will tell you how I would build it, with the cost and the failure modes up front.</div></div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__q" aria-expanded="false"><span>How do I reach you?</span><svg class="faq__chev"><use href="#i-chev"/></svg></button>
+          <div class="faq__a"><div class="faq__inner">Email <a href="mailto:yassine@ennaim.dev">yassine@ennaim.dev</a>, message me on <a href="https://www.linkedin.com/in/ennaim" target="_blank" rel="noopener">LinkedIn</a>, or hire me through <a href="https://www.upwork.com/freelancers/ennaim" target="_blank" rel="noopener">Upwork</a>. Arabic, French and English all work.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section section--cta">
+    <div class="wrap wrap--center">
+      <h2 class="cta__title" data-reveal>Start a project with Yassine today</h2>
+      <div class="actions actions--center" data-reveal>
+        <button class="btn btn--primary btn--copy" id="copyEmail" type="button" aria-label="Copy email address">
+          <span class="btn__slide"><span class="btn__slide-inner"><span>Copy email</span><span>Copied</span></span></span>
+          <svg class="btn__icon"><use href="#i-mail"/></svg>
+        </button>
+        <a class="btn btn--dark" href="https://www.linkedin.com/in/ennaim" target="_blank" rel="noopener">LinkedIn <svg class="btn__icon"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__panel">
+    <div class="footer__brand">
+      <img class="footer__mark" src="assets/logo-mark.svg" alt="ennaim" width="36" height="36">
+      <div class="footer__status">
+        <div class="footer__status-row"><i class="dot dot--green dot--pulse"></i>AVAILABLE · 8 WEEKS NOTICE</div>
+        <div class="footer__status-row"><i class="dot"></i>UTC+7 · SOUTHEAST ASIA</div>
+      </div>
+    </div>
+    <div class="footer__cols">
+      <div class="footer__col"><h4>Work</h4><a href="#work">Agents</a><a href="#work">Workflows</a><a href="#work">Observability</a><a href="#projects">Projects</a><a href="#experience">Experience</a></div>
+      <div class="footer__col"><h4>Connect</h4><a href="mailto:yassine@ennaim.dev">yassine@ennaim.dev</a><a href="https://www.linkedin.com/in/ennaim" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.upwork.com/freelancers/ennaim" target="_blank" rel="noopener">Upwork</a><a href="https://github.com/ennaimdev" target="_blank" rel="noopener">GitHub</a><a href="https://wa.me/212631815428" target="_blank" rel="noopener">WhatsApp</a></div>
+      <div class="footer__col"><h4>Resources</h4><a href="assets/Yassine-Ennaim-CV.pdf" target="_blank" rel="noopener">CV (PDF)</a><a href="https://fouz.app" target="_blank" rel="noopener">fouz.app</a><a href="https://mastra.ai" target="_blank" rel="noopener">Mastra</a><a href="#faq">FAQ</a></div>
+    </div>
+    <div class="footer__bottom"><span>© 2026 Yassine Ennaim</span><span>ennaim.dev</span></div>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
