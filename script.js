@@ -1,6 +1,12 @@
 /* ennaim.dev — small vanilla script: hero word cycle, marquee loop, feature tabs,
    scroll reveal, FAQ accordion, copy-email button, mobile nav. No dependencies. */
 (() => {
+  /* 0. Always serve the site over HTTPS (Cloudflare's "Always Use HTTPS" does this at the edge too) */
+  if (location.protocol === 'http:' && /(^|\.)ennaim\.dev$/.test(location.hostname)) {
+    location.replace(`https://${location.host}${location.pathname}${location.search}${location.hash}`);
+    return;
+  }
+
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const EMAIL = 'yassine@ennaim.dev';
 
