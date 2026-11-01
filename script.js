@@ -25,17 +25,7 @@
     });
   }
 
-  /* 3. Hero trace: replay the row reveal every 16s so the panel feels live */
-  const traceRows = document.querySelector('#trace .trace__rows');
-  if (traceRows && !reduce) {
-    setInterval(() => {
-      traceRows.classList.remove('replay');
-      void traceRows.offsetWidth;
-      traceRows.classList.add('replay');
-    }, 16000);
-  }
-
-  /* 4. Feature tabs: direction-aware switch, staggered code lines, autoplay until touched */
+  /* 3. Feature tabs: direction-aware switch, staggered code lines, autoplay until touched */
   const tabs = document.getElementById('tabs');
   if (tabs) {
     const triggers = [...tabs.querySelectorAll('.tabs__tab')];
